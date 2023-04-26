@@ -10,3 +10,10 @@
     char Localizacion[20];
     char gustos[5][30];
 }Usuario;
+typedef struct node{
+    Usuario usuario;
+    struct node *siguiente;
+} Node;
+Node *print_users(Node *lista);
+
+Node *search_user(Node *node, char *nombre);
