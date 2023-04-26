@@ -1,8 +1,8 @@
 #include <stdio.h>
-
+#include <string.h>
+#include "main.h"
 int main() {
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    cjbsiuvn;
-    return 0;
+    Usuario usuario1;
+    strcpy(usuario1.name,"avlaro");
+    printf("%s",usuario1);
 }
