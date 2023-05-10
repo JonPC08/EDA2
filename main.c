@@ -14,10 +14,10 @@ Node *print_users(Node *lista) {
     Node *actual_node = lista;
     while (actual_node != NULL) {
         printf("Nombre de usuario: %s\n", actual_node->usuario.name);
-        printf("Año nacimiento %d", actual_node->usuario.año_nacimiento);
+        printf("Año nacimiento %d", actual_node->usuario.year_nacimiento);
         printf("Correo %s", actual_node->usuario.correo);
         printf("Localización %s", actual_node->usuario.Localizacion);
-        printf("Gustos %s", actual_node->usuario.gustos);;
+        printf("Gustos %s-%s-%s-%s-%s", actual_node->usuario.gustos[0],actual_node->usuario.gustos[1],actual_node->usuario.gustos[2],actual_node->usuario.gustos[3],actual_node->usuario.gustos[4]);
         actual_node = actual_node->siguiente;
     }
     return actual_node;
@@ -42,7 +42,7 @@ int main() {
     char respuesta[3];
     printf("Quieres Ver los Usuarios");
     scanf("%s", respuesta);
-    if(respuesta == "si"){
+    if(strcmp(respuesta,"si")>0){
         print_users(lista);
     }
     char nombre[20];
@@ -52,7 +52,7 @@ int main() {
     if (encontrado != NULL) {
         // Si se encuentra el usuario, imprimimos sus características
         printf("Nombre: %s\n", encontrado->usuario.name);
-        printf("Año de nacimiento: %d/%d/%d\n", encontrado->usuario.año_nacimiento);
+        printf("Año de nacimiento: %d\n", encontrado->usuario.year_nacimiento);
         printf("Correo: %s\n", encontrado->usuario.correo);
         printf("Localización: %s\n", encontrado->usuario.Localizacion);
         printf("Gustos:\n");
