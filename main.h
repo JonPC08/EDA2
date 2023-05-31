@@ -9,10 +9,11 @@
         char correo[30];
         char Localizacion[20];
         char gustos[5][30];
+        char password[20];
+        int id;
         struct post *Timeline;
         struct Usuario* soli[20];
         struct Usuario* head;
-        struct Usuario* actual;
         struct Usuario* siguiente;
     }Usuario;
 
