@@ -1,21 +1,25 @@
-
 #ifndef EDA2_MAIN_H
 #define EDA2_MAIN_H
+#define MAX_AMIGOS 100
 
-#endif //EDA2_MAIN_H
-     typedef struct{
-        char name[20];
-        int year_nacimiento[1];
-        char correo[30];
-        char Localizacion[20];
-        char gustos[5][30];
-        char password[20];
-        int id;
-        struct post *Timeline;
-        struct Usuario* soli[20];
-        struct Usuario* head;
-        struct Usuario* siguiente;
-    }Usuario;
+#endif //EDA2_MAIN_H//
+typedef struct {
+    char name[20];
+    int year_nacimiento;
+    char correo[30];
+    char Localizacion[20];
+    int cantidad_de_gustos;
+    char gustos[5][30];
+    char password[20];
+    int id;
+    struct post* Timeline;
+    struct Usuario* soli[20];
+    struct Usuario* head;
+    struct Usuario* siguiente;
+    struct Usuario* amigos[MAX_AMIGOS]; // Array to store friends
+    int num_amigos; // Number of friends
+} Usuario;
+
 
 typedef struct{
     char publicacion[120];
