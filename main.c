@@ -182,15 +182,15 @@ int main() {
             Usuario* encontrado = NULL;
             int id;
             printf("Iniciar sesion con id o con nombre?");
-            char respuesta;
+            char respuesta[10];
             scanf("%s",respuesta);
-            if(strcmp(&respuesta, "id") == 0){
+            if(strcmp(respuesta, "id") == 0){
                 printf("Ingrese el ID del usuario: \n");
                 scanf("%d", &id);
                 int hash_index = hash_function(id);
                 encontrado = hash_table[hash_index];
             }
-            else if(strcmp(&respuesta,"nombre") == 0){
+            else if(strcmp(respuesta,"nombre") == 0){
                 char nombre[20];
                 printf("Ingrese el nombre del usuario: \n");
                 scanf("%19s", nombre);
@@ -199,18 +199,7 @@ int main() {
             if (encontrado != NULL) {
                 while (1 == 1) {
                     // If the user is found, print their details
-                    printf("------------------------------------------\n");
-                    printf("----------- Ficha del usuario ------------\n");
-                    printf("Nombre: %s\n", encontrado->name);
-                    printf("Ano de nacimiento: %d\n", encontrado->year_nacimiento);
-                    printf("Correo: %s\n", encontrado->correo);
-                    printf("Localizacion: %s\n", encontrado->Localizacion);
-                    printf("Gustos: ");
-                    for (int i = 0; i < encontrado->cantidad_de_gustos; i++) {
-                        if (strcmp(encontrado->gustos[i], "") != 0) {
-                            printf("%s ", encontrado->gustos[i]);
-                        }
-                    }
+                    print_users(encontrado);
                     printf("------------------------------------------\n\n");
                     printf("\n");
                     printf("\n\nSubmenu:\n"
@@ -240,10 +229,10 @@ int main() {
                         accaept_friend_request(encontrado,encontrado->soli[i]);
                     }
                     if (sub_option ==3);
-                    printf("Introduce aqui tu post (maximo 120 caracteres");
-                    char publicacion[120];
-                    scanf("%s",publicacion);
-                    add_post(encontrado,&publicacion);
+                        printf("Introduce aqui tu post (maximo 120 caracteres): ");
+                        char publicacion[120];
+                        scanf("%s",publicacion);
+                        add_post(encontrado,&publicacion);
                     if (sub_option == 5) {
                         break;
                     }
