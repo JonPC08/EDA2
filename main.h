@@ -27,13 +27,14 @@ typedef struct{
     char publicacion[121];
     struct post* siguiente;
 }post;
-/*
+
 void add_user(Usuario** lista, Usuario* usuario_nuevo);
 Usuario* print_users(Usuario *lista);
 Usuario *search_user(Usuario *node, char *nombre);
 int hash_function(int id);
 void add_post(Usuario* usuario, const char* message);
+void print_posts(Usuario* user);
 void add_friend_request(Usuario* usuario, Usuario* amigo);
 void accept_friend_request(Usuario* usuario);
-void remove(Usuario* usuario);
-void leerArchivo(const char* nombreArchivo, Usuario** lista);*/
+void remove_friend(Usuario* usuario);
+int leerArchivo(const char* nombreArchivo, Usuario** lista, int id_count);
