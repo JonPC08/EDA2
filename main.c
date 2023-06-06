@@ -4,7 +4,7 @@
 #include "main.h"
 #define HASH_SIZE 100
 
-void add_user(Usuario** lista, Usuario* usuario_nuevo) {
+Usuario* add_user(Usuario** lista, Usuario* usuario_nuevo) {
     if (*lista == NULL) {
         *lista = usuario_nuevo;
     } else {
@@ -67,12 +67,30 @@ void add_friend_request(Usuario* usuario, Usuario* amigo) {
         printf("No se pueden agregar mas solicitudes de amistad.\n");
     }
 }
+void accaept_friend_request(Usuario* usuario, Usuario* amigo) {
+    if (usuario->num_amigos >= MAX_AMIGOS) {
+        printf("No se pueden agregar más amigos.\n");
+        return;
+    }
 
-int leerArchivo(const char* nombreArchivo, Usuario* lista) {
+    // Agregar amigo a la lista de amigos del usuario
+    usuario->amigos[usuario->num_amigos] = amigo;
+    usuario->num_amigos++;
+    printf("%s ha sido agregado como amigo.\n", amigo->name);
+
+    // Eliminar la solicitud de amistad aceptada de la lista de solicitudes
+    for (int i = 0; i < 20; i++) {
+        if (usuario->soli[i] == amigo) {
+            usuario->soli[i] = NULL;
+            break;
+        }
+    }
+}
+
+void leerArchivo(const char* nombreArchivo, Usuario** lista) {
     FILE* archivo = fopen(nombreArchivo, "r");
     if (archivo == NULL) {
         printf("Error al abrir el archivo.\n");
-        return -1;
     }
 
     char linea[256];
@@ -91,9 +109,7 @@ int leerArchivo(const char* nombreArchivo, Usuario* lista) {
     }
 
     fclose(archivo);
-    return 1;
 }
-
 int main() {
     int option = 0;
     static int id = 0;
@@ -102,8 +118,10 @@ int main() {
     for (int i = 0; i < HASH_SIZE; i++) {
         hash_table[i] = NULL; // Inicializar la tabla hash
     }
+    printf("\n\nCargando archivo de 10 usuarios");
+    leerArchivo("Usuarios.txt",&lista);
     while (option != 4) {
-        printf("\n\n\n\nOpciones del Menu Principal\n"
+        printf("\n\nOpciones del Menu Principal\n"
                "1. Insertar nuevo usuario.\n"
                "2. Listar todos los usuarios.\n"
                "3. Encontrar y operar como un usuario en especifico.\n"
@@ -160,15 +178,24 @@ int main() {
 
         else if (option == 3) {
             // Search for a specific user in the list
+            // declaramos antes la variable encontrado para que no haya un problema de memoria al inicalizar en los bloques if, else if
+            Usuario* encontrado = NULL;
             int id;
-            printf("Ingrese el ID del usuario: \n");
-            scanf("%d", &id);
-            int hash_index = hash_function(id);
-            char nombre[20];
-            printf("Ingrese el nombre del usuario: \n");
-            scanf("%19s", nombre);
-            Usuario* encontrado = search_user(lista, nombre);
-            Usuario* encontradO = hash_table[hash_index];
+            printf("Iniciar sesion con id o con nombre?");
+            char respuesta;
+            scanf("%s",respuesta);
+            if(strcmp(&respuesta, "id") == 0){
+                printf("Ingrese el ID del usuario: \n");
+                scanf("%d", &id);
+                int hash_index = hash_function(id);
+                encontrado = hash_table[hash_index];
+            }
+            else if(strcmp(&respuesta,"nombre") == 0){
+                char nombre[20];
+                printf("Ingrese el nombre del usuario: \n");
+                scanf("%19s", nombre);
+                encontrado = search_user(lista, nombre);
+            }
             if (encontrado != NULL) {
                 while (1 == 1) {
                     // If the user is found, print their details
@@ -209,8 +236,14 @@ int main() {
                         }
                     }
                     if (sub_option == 2) {
-                        /// Aqui va para aceptar/rechazar/ver solicitudes ///
+                        for(int i =0; i< sizeof(encontrado->num_amigos);i++)
+                        accaept_friend_request(encontrado,encontrado->soli[i]);
                     }
+                    if (sub_option ==3);
+                    printf("Introduce aqui tu post (maximo 120 caracteres");
+                    char publicacion[120];
+                    scanf("%s",publicacion);
+                    add_post(encontrado,&publicacion);
                     if (sub_option == 5) {
                         break;
                     }

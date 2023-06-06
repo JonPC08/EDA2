@@ -24,8 +24,11 @@ typedef struct {
 typedef struct{
     char publicacion[120];
 }post;
+Usuario* add_user(Usuario** lista, Usuario* usuario_nuevo);
 Usuario *print_users(Usuario *lista);
-
 Usuario *search_user(Usuario *node, char *nombre);
+int hash_function(int id);
+void add_post(Usuario* usuario, char mensaje[120]);
+void add_friend_request(Usuario* usuario, Usuario* amigo);
 
-int leerArchivo(const char* nombreArchivo, Usuario* lista);
+void leerArchivo(const char* nombreArchivo, Usuario** lista);
