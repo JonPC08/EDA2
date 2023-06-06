@@ -18,17 +18,22 @@ typedef struct {
     struct Usuario* siguiente;
     struct Usuario* amigos[MAX_AMIGOS]; // Array to store friends
     int num_amigos; // Number of friends
+    int num_soli;
+    int num_posts;
 } Usuario;
 
 
 typedef struct{
-    char publicacion[120];
+    char publicacion[121];
+    struct post* siguiente;
 }post;
-Usuario* add_user(Usuario** lista, Usuario* usuario_nuevo);
-Usuario *print_users(Usuario *lista);
+/*
+void add_user(Usuario** lista, Usuario* usuario_nuevo);
+Usuario* print_users(Usuario *lista);
 Usuario *search_user(Usuario *node, char *nombre);
 int hash_function(int id);
-void add_post(Usuario* usuario, char mensaje[120]);
+void add_post(Usuario* usuario, const char* message);
 void add_friend_request(Usuario* usuario, Usuario* amigo);
-
-void leerArchivo(const char* nombreArchivo, Usuario** lista);
+void accept_friend_request(Usuario* usuario);
+void remove(Usuario* usuario);
+void leerArchivo(const char* nombreArchivo, Usuario** lista);*/
