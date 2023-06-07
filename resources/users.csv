@@ -1,1 +1,10 @@
-
+"Maria", 1985, "maria@example.com", "Madrid", 4, "Arte", "Música", "Gastronomía", "Deportes", "Cine"
+"Carlos", 1992, "carlos@example.com", "Barcelona", 3, "Música", "Viajes", "Deportes", "", ""
+"Sofia", 1988, "sofia@example.com", "Sevilla", 5, "Gastronomía", "Viajes", "Arte", "Cine", "Libros"
+"Juan", 1990, "juan@example.com", "Valencia", 2, "Deportes", "Música", "", "", ""
+"Laura", 1995, "laura@example.com", "Málaga", 4, "Cine", "Libros", "Música", "Viajes", ""
+"Pedro", 1982, "pedro@example.com", "Bilbao", 1, "Deportes", "", "", "", ""
+"Ana", 1998, "ana@example.com", "Zaragoza", 5, "Arte", "Gastronomía", "Libros", "Cine", "Música"
+"Antonio", 1987, "antonio@example.com", "Murcia", 3, "Viajes", "Deportes", "Gastronomía", "", ""
+"Marta", 1993, "marta@example.com", "Granada", 2, "Música", "Cine", "", "", ""
+"David", 1991, "david@example.com", "Alicante", 4, "Libros", "Arte", "Música", "Deportes", ""
