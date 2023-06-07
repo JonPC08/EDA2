@@ -264,9 +264,10 @@ void accept_friend_request(Usuario* user) {
                 printf("%s, ",user->amigos[j]);
             }
             printf("\n");
-            printf("Amigos de %s:\n",selectedUser->name);
+            printf("Amigos de %s:",selectedUser->name);
             for(int m = 0; m<selectedUser->num_amigos;m++){
                 printf("%s, ",selectedUser->amigos[m]);
+                printf("\n");
             }
         } else if (decision == 0) {
             // Eliminar la solicitud
@@ -366,7 +367,7 @@ void sugerencias(Usuario* usuario) {
                 }
             }
         }
-
+    if (gustos_comunes==0){printf("No hay sugerencias");}
         // Si no son amigos, no hay solicitud pendiente y comparten al menos un gusto, mostrar el usuario y ofrecer enviar una solicitud de amistad
         if (!es_amigo && !solicitud_pendiente && gustos_comunes > 0) {
             printf("Usuario: %s\n", actual->name);
@@ -408,6 +409,10 @@ int main() {
                "4. Salir\n");
         printf("Selecciona una de las opciones con un numero del 1 al 4:\n");
         scanf("%i", &option);
+        if(option>4 || option<1){
+            printf("Opcion invalida");
+            break;
+        }
         /// 1. Opcion para añadir usuarios. 1.1. Añadir usuario manualmente, 1.2. Añadir usuarios con .csv
         if (option == 1) {
             // Upload a user
@@ -572,7 +577,7 @@ int main() {
                         print_posts(nombreaver,lista);
                     }
                     else if (sub_option == 5){
-                        printf("Quieres ver las sugerencias? (si/no)");
+                        printf("Quieres ver las sugerencias? (si/no) ");
                         char mostrar[4];
                         scanf("%s",mostrar);
                         if (strcmp(mostrar,"si")==0){
