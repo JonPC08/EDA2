@@ -409,7 +409,7 @@ int main() {
                "4. Salir\n");
         printf("Selecciona una de las opciones con un numero del 1 al 4:\n");
         scanf("%i", &option);
-        if(option>4 || option<1({)
+        if(option>4 || option<1){
             printf("Opcion invalida");
             break;
         }
